@@ -31,8 +31,10 @@ while true
     all_teams = response.parse(@sport_teams)
 
     puts "Filter by:"
-    puts "Type 0 for all teams"
-    puts "Type 1 for City/Region"
+    puts "Type 0 for all teams in order of ID"
+    puts "Type 1 to search for one instance via ID"
+    puts "Type 2 for City/Region"
+    puts "Type 3 for Market Size"
     filter_input = gets.chomp
 
     if filter_input == "0"
@@ -48,6 +50,15 @@ while true
         puts
       end
     elsif filter_input == "1"
+      puts "Please enter an ID to select. Refer to Option 0 for reference."
+      singular_team_input = gets.chomp.to_i
+      response = HTTP.get("http://localhost:3000/api/sport_teams/#{singular_team_input}")
+      singularity = response.parse(@sport_team)
+
+      puts
+      pp singularity
+      puts
+    elsif filter_input == "2"
       puts "Please enter city/region to filter by:"
       city_filter_response = gets.chomp
       all_teams.each do |team|
@@ -57,7 +68,20 @@ while true
           puts
         end
       end
+    elsif filter_input == "3"
+      puts "Filter by Large, Medium or Small markets:"
+      market_filter_response = gets.chomp
+
+      all_teams.each do |team|
+        if team["market_size"] == market_filter_response
+          puts
+          pp team
+          puts
+        end
+      end
     else
+      puts "Invalid Input! Exiting Program..."
+      break
     end
   elsif user_input == "3"
     puts "What item do you want to alter?"
