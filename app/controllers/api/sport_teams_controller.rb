@@ -23,7 +23,7 @@ class Api::SportTeamsController < ApplicationController
 
   def update
     @sport_team = SportTeam.find(params[:id])
-    
+
     @sport_team.team_name = params[:team_name] || @sport_team.team_name
     @sport_team.geographic_affiliation = params[:geographic_affiliation] || @sport_team.geographic_affiliation
     @sport_team.market_size = params[:market_size] || @sport_team.market_size
