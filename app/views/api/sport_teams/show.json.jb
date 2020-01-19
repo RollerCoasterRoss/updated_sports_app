@@ -1,0 +1,8 @@
+{
+  id: @sport_team.id,
+  team_name: @sport_team.team_name,
+  geographic_affiliation: @sport_team.geographic_affiliation,
+  market_size: @sport_team.market_size,
+  notable_player: @sport_team.notable_player,
+  additional_info: @sport_team.additional_info
+}
