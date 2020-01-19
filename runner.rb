@@ -4,7 +4,7 @@ while true
   puts "-" * 25
   puts "Type 0(Number) to exit program."
   puts "Type 1 to Create new team in DB."
-  puts "Type 2 to Read all teams in DB."
+  puts "Type 2 to Read teams in DB."
   puts "Type 3 to Update specific team attribute."
   puts "Type 4 to Delete team from DB."
   puts "-" * 25
@@ -30,10 +30,34 @@ while true
     response = HTTP.get("http://localhost:3000/api/sport_teams")
     all_teams = response.parse(@sport_teams)
 
-    all_teams.each do |team|
-      puts
-      pp team
-      puts
+    puts "Filter by:"
+    puts "Type 0 for all teams"
+    puts "Type 1 for City/Region"
+    filter_input = gets.chomp
+
+    if filter_input == "0"
+      filter_0_arr = []
+      all_teams.each do |team|
+        filter_0_arr << team
+      end
+
+      final_filter_arr = filter_0_arr.sort_by{|filter_0_hash| filter_0_hash["id"]}
+      final_filter_arr.each do |team|
+        puts
+        pp team
+        puts
+      end
+    elsif filter_input == "1"
+      puts "Please enter city/region to filter by:"
+      city_filter_response = gets.chomp
+      all_teams.each do |team|
+        if team["geographic_affiliation"] == city_filter_response
+          puts
+          pp team
+          puts
+        end
+      end
+    else
     end
   elsif user_input == "3"
     puts "What item do you want to alter?"
