@@ -1,2 +1,2 @@
 class SportTeam < ApplicationRecord
-end
+end 

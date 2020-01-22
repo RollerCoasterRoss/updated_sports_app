@@ -1,0 +1,10 @@
+{
+  id: sport_team.id,
+  team_name: sport_team.team_name,
+  city_region: sport_team.city_region,
+  market_size: sport_team.market_size,
+  fanbase_loyalty: sport_team.fanbase_loyalty,
+  sport_type: sport_team.sport_type,
+  notable_player: sport_team.notable_player,
+  additional_info: sport_team.additional_info
+}

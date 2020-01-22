@@ -14,18 +14,22 @@ while true
     puts "Exiting program..."
     break
   elsif user_input == "1"
-    puts "Enter Team Name now:"
+    puts "Enter team name now:"
     create_input_1 = gets.chomp
-    puts "Enter Geographic Affiliation Now:"
+    puts "Enter city or region that team represents:"
     create_input_2 = gets.chomp
-    puts "Enter Team Market Size Now:"
+    puts "Enter team market size now:"
     create_input_3 = gets.chomp
-    puts "Enter Single Player Now:"
+    puts "Enter fanbase loyalty rating now:"
     create_input_4 = gets.chomp
-    puts "Enter Any Additional Comments Now:"
+    puts "Enter type of sport team plays:"
     create_input_5 = gets.chomp
+    puts "Enter well known player now:"
+    create_input_6 = gets.chomp
+    puts "Enter any additional comments now:"
+    create_input_7 = gets.chomp
 
-    response = HTTP.post("http://localhost:3000/api/sport_teams", :params => {team_name: create_input_1, geographic_affiliation: create_input_2, market_size: create_input_3, notable_player: create_input_4, additional_info: create_input_5})
+    response = HTTP.post("http://localhost:3000/api/sport_teams", :params => {team_name: create_input_1, city_region: create_input_2, market_size: create_input_3, fanbase_loyalty: create_input_4, sport_type: create_input_5, notable_player: create_input_6, additional_info: create_input_7})
   elsif user_input == "2"
     response = HTTP.get("http://localhost:3000/api/sport_teams")
     all_teams = response.parse(@sport_teams)
@@ -46,7 +50,7 @@ while true
       final_filter_arr = filter_0_arr.sort_by{|filter_0_hash| filter_0_hash["id"]}
       final_filter_arr.each do |team|
         puts
-        pp team
+        p team
         puts
       end
     elsif filter_input == "1"
@@ -90,7 +94,6 @@ while true
     update_input_2 = gets.chomp.to_sym
     puts "What do you want the value to be?"
     update_input_3 = gets.chomp
-
     response = HTTP.patch("http://localhost:3000/api/sport_teams/#{update_input}", :params => {update_input_2 => update_input_3})
   elsif user_input == "4"
     puts "Please enter ID of team you wish to Destroy:"

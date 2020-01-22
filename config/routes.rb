@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     get '/sport_teams/:id' => 'sport_teams#show'
     patch '/sport_teams/:id' => 'sport_teams#update'
     delete '/sport_teams/:id' => 'sport_teams#destroy'
-  end
-end
+  end 
+end 
