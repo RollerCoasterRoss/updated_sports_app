@@ -6,4 +6,4 @@ Rails.application.routes.draw do
     patch '/sport_teams/:id' => 'sport_teams#update'
     delete '/sport_teams/:id' => 'sport_teams#destroy'
   end 
-end 
+end
